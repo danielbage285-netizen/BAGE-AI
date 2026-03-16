@@ -64,8 +64,20 @@ margin-top:50px;
 <input id="voiceText" placeholder="Type text for voice..." style="padding:10px;width:200px;">
 <button onclick="speakText()">Speak</button>
 </div>
+  <div style="margin-top:30px;">
+<input id="videoPrompt" placeholder="Describe video..." style="padding:10px;width:200px;">
+<button onclick="generateVideo()">Generate Video</button>
+<p id="videoResult"></p>
+</div>
 </body><script>function generateShayari() {function aiChat(){function speakText(){
+function generateVideo(){
 
+let prompt = document.getElementById("videoPrompt").value;
+
+document.getElementById("videoResult").innerText =
+"Generating AI video for: " + prompt + " (Runway ML connect soon)";
+
+}
 let text = document.getElementById("voiceText").value;
 
 let speech = new SpeechSynthesisUtterance(text);
