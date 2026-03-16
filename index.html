@@ -60,7 +60,21 @@ margin-top:50px;
 <button onclick="aiChat()">Send</button>
 <p id="chatReply"></p>
 </div>
-</body><script>function generateShayari() {function aiChat(){
+  <div style="margin-top:30px;">
+<input id="voiceText" placeholder="Type text for voice..." style="padding:10px;width:200px;">
+<button onclick="speakText()">Speak</button>
+</div>
+</body><script>function generateShayari() {function aiChat(){function speakText(){
+
+let text = document.getElementById("voiceText").value;
+
+let speech = new SpeechSynthesisUtterance(text);
+
+speech.lang = "hi-IN";
+
+speechSynthesis.speak(speech);
+
+}
 
 let input = document.getElementById("userInput").value.toLowerCase();
 let reply = "I am BAGE AI 🤖";
