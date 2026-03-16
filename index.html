@@ -41,6 +41,12 @@ margin-top:50px;
 <body>
 
 <header>BAGE AI</header>
+  <div style="margin-top:20px;">
+<input id="email" placeholder="Email" style="padding:10px;">
+<input id="password" placeholder="Password" type="password" style="padding:10px;">
+<button onclick="login()">Login</button>
+<p id="loginStatus"></p>
+</div>
 
 <div class="container">
 
@@ -71,7 +77,18 @@ margin-top:50px;
 </div>
 </body><script>function generateShayari() {function aiChat(){function speakText(){
 function generateVideo(){
+function login(){
 
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+if(email === "admin@bageai.com" && password === "1234"){
+document.getElementById("loginStatus").innerText = "Login Successful ✅";
+}else{
+document.getElementById("loginStatus").innerText = "Wrong Email or Password ❌";
+}
+
+}
 let prompt = document.getElementById("videoPrompt").value;
 
 document.getElementById("videoResult").innerText =
