@@ -18,7 +18,11 @@ padding:20px;
 color:#00ffcc;
 }
 
-button{
+button{<div style="margin-top:30px;">
+<input id="userInput" placeholder="Type message..." style="padding:10px;width:200px;">
+<button onclick="aiChat()">Send</button>
+<p id="chatReply"></p>
+</div>
 padding:10px 20px;
 margin:10px;
 background:#00ffcc;
@@ -51,8 +55,24 @@ margin-top:50px;
 <button>Video Generator</button>
 
 </div>
+<div style="margin-top:30px;">
+<input id="userInput" placeholder="Type message..." style="padding:10px;width:200px;">
+<button onclick="aiChat()">Send</button>
+<p id="chatReply"></p>
+</div>
+</body><script>function generateShayari() {function aiChat(){
 
-</body><script>
+let input = document.getElementById("userInput").value.toLowerCase();
+let reply = "I am BAGE AI 🤖";
+
+if(input.includes("hello")) reply = "Hello! How can I help you?";
+if(input.includes("shayari")) reply = "Click the Shayari button!";
+if(input.includes("song")) reply = "Song generator coming soon!";
+if(input.includes("bye")) reply = "Goodbye!";
+
+document.getElementById("chatReply").innerText = reply;
+
+}
 
 function generateShayari() {
 
