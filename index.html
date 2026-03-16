@@ -44,7 +44,7 @@ margin-top:50px;
 
 <p>AI Shayari | Song Generator | Image Generator | Video Generator</p>
 
-<button>Generate Shayari</button>
+<button onclick="generateShayari()">Generate Shayari</button>
 <button>Generate Song</button>
 <button>AI Chat</button>
 <button>Image Generator</button>
@@ -52,5 +52,21 @@ margin-top:50px;
 
 </div>
 
-</body>
+</body><script>
+
+function generateShayari() {
+
+let shayari = [
+"तेरी यादों का मौसम हर रोज़ आता है, दिल को चुपके से रुला जाता है।",
+"तू पास नहीं फिर भी एहसास तेरा है, जैसे हर सांस में नाम तेरा है।",
+"मोहब्बत अधूरी सही मगर सच्ची है, दिल में तेरी याद अब भी अच्छी है।"
+];
+
+let random = Math.floor(Math.random()*shayari.length);
+
+alert(shayari[random]);
+
+}
+
+</script>
 </html>
