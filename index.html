@@ -49,7 +49,7 @@ margin-top:50px;
 <p>AI Shayari | Song Generator | Image Generator | Video Generator</p>
 
 <button onclick="generateShayari()">Generate Shayari</button>
-<button>Generate Song</button>
+<button onclick="generateSong()">Generate Song</button>
 <button>AI Chat</button>
 <button>Image Generator</button>
 <button>Video Generator</button>
@@ -88,7 +88,19 @@ document.getElementById("chatReply").innerText = reply;
 
 }
 
-function generateShayari() {
+function generateShayari() {function generateSong(){
+
+let song = [
+"दिल की धड़कन में तेरा नाम है, हर सुबह में तेरा पैगाम है।",
+"तेरे बिना ये रात अधूरी है, तेरी याद ही मेरी मजबूरी है।",
+"चाँद भी तुझसे जलने लगा है, तेरी मुस्कान में जादू छुपा है।"
+];
+
+let random = Math.floor(Math.random()*song.length);
+
+alert(song[random]);
+
+}
 
 let shayari = [
 "तेरी यादों का मौसम हर रोज़ आता है, दिल को चुपके से रुला जाता है।",
