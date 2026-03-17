@@ -17,7 +17,6 @@ headers: {
 body: JSON.stringify({
 model: "gpt-4o-mini",
 messages: [
-{ role: "system", content: "You are a helpful AI that writes shayari and songs." },
 { role: "user", content: message }
 ]
 })
@@ -25,9 +24,10 @@ messages: [
 
 const data = await response.json();
 
-// 🧠 SAFE CHECK
+console.log(data); // 🔍 debug
+
 if (!data.choices) {
-return res.status(500).json({ reply: "API Error ❌" });
+return res.status(500).json({ reply: "API Failed ❌" });
 }
 
 res.status(200).json({
@@ -35,7 +35,7 @@ reply: data.choices[0].message.content
 });
 
 } catch (err) {
-res.status(500).json({ reply: "Server Error ❌" });
+return res.status(500).json({ reply: "Server Error ❌" });
 }
 
 }
