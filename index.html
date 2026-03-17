@@ -45,6 +45,7 @@ margin-top:50px;
 <input id="email" placeholder="Email" style="padding:10px;">
 <input id="password" placeholder="Password" type="password" style="padding:10px;">
 <button onclick="login()">Login</button>
+    <button onclick="googleLogin()">Login with Google</button>
 <p id="loginStatus"></p>
 </div>
 
@@ -77,7 +78,12 @@ margin-top:50px;
 </div>
 </body><script>function generateShayari() {function aiChat(){function speakText(){
 function generateVideo(){
-function login(){
+function login(){function googleLogin(){
+
+document.getElementById("loginStatus").innerText =
+"Google Login coming soon 🚀";
+
+  }
 
 let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
