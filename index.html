@@ -64,8 +64,12 @@ margin-top:50px;
 </head>
 
 <body>
-
-<header>BAGE AI</header>
+<header>
+BAGE AI
+<br>
+<button onclick="setHindi()">Hindi</button>
+<button onclick="setEnglish()">English</button>
+</header>
   <div style="margin-top:20px;">
 <input id="email" placeholder="Email" style="padding:10px;">
 <input id="password" placeholder="Password" type="password" style="padding:10px;">
@@ -103,7 +107,15 @@ margin-top:50px;
 </div>
 </body><script>function generateShayari() {function aiChat(){function speakText(){
 function generateVideo(){
-function login(){function googleLogin(){
+function login(){function googleLogin(){function setHindi(){
+document.body.style.fontFamily="Noto Sans Devanagari, Arial";
+alert("Website language set to Hindi");
+}
+
+function setEnglish(){
+document.body.style.fontFamily="Arial";
+alert("Website language set to English");
+}
 
 document.getElementById("loginStatus").innerText =
 "Google Login coming soon 🚀";
