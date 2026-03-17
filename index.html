@@ -105,7 +105,34 @@ BAGE AI
 <button onclick="generateVideo()">Generate Video</button>
 <p id="videoResult"></p>
 </div>
-</body><script>function generateShayari() {function aiChat(){function speakText(){
+</body><script>function generateShayari()<script>
+
+async function aiChat(){
+
+let input = document.getElementById("userInput").value;
+
+document.getElementById("chatReply").innerText = "Thinking... 🤖";
+
+const response = await fetch("https://api.openai.com/v1/chat/completions", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+"Authorization": "Bearer YOUR_API_KEY"
+},
+body: JSON.stringify({
+model: "gpt-4o-mini",
+messages: [{role: "user", content: input}]
+})
+});
+
+const data = await response.json();
+
+document.getElementById("chatReply").innerText =
+data.choices[0].message.content;
+
+}
+
+</script> (){function speakText(){
 function generateVideo(){
 function login(){function googleLogin(){function setHindi(){
 document.body.style.fontFamily="Noto Sans Devanagari, Arial";
