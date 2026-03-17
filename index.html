@@ -26,39 +26,32 @@ cursor:pointer;
 
 <h1>🤖 BAGE AI</h1>
 
-<!-- LOGIN -->
 <h3>Login</h3>
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Password">
 <button onclick="login()">Login</button>
 <p id="loginStatus"></p>
 
-<!-- CHAT -->
 <h3>AI Chat</h3>
 <input type="text" id="userInput" placeholder="Type message...">
 <button onclick="aiChat()">Send</button>
 <p id="chatReply"></p>
 
-<!-- SHAYARI -->
 <h3>Shayari</h3>
 <button onclick="generateShayari()">Generate Shayari</button>
 
-<!-- SONG -->
 <h3>Song</h3>
 <button onclick="generateSong()">Generate Song</button>
 
-<!-- VOICE -->
 <h3>Text to Voice</h3>
 <input type="text" id="voiceText" placeholder="Enter text">
 <button onclick="speakText()">Speak</button>
 
-<!-- VIDEO -->
 <h3>Video Generator</h3>
 <input type="text" id="videoPrompt" placeholder="Enter prompt">
 <button onclick="generateVideo()">Generate Video</button>
 <p id="videoResult"></p>
 
-<!-- PAYMENT -->
 <h3>Subscription</h3>
 <p>Free Plan</p>
 <p>Pro Plan - ₹299</p>
@@ -79,7 +72,7 @@ document.getElementById("loginStatus").innerText = "Wrong Email ❌";
 }
 }
 
-// AI CHAT
+// AI CHAT (FIXED)
 async function aiChat(){
 let input = document.getElementById("userInput").value;
 
@@ -91,7 +84,7 @@ return;
 document.getElementById("chatReply").innerText = "Thinking... 🤖";
 
 try{
-const response = await fetch("https://bage-ai.vercel.app/api/chat", {
+const response = await fetch("/api/chat", {   // ✅ FIXED
 method: "POST",
 headers: {
 "Content-Type": "application/json"
@@ -100,10 +93,15 @@ body: JSON.stringify({ message: input })
 });
 
 const data = await response.json();
+
+if(data.reply){
 document.getElementById("chatReply").innerText = data.reply;
+}else{
+document.getElementById("chatReply").innerText = "API Error ❌";
+}
 
 }catch(e){
-document.getElementById("chatReply").innerText = "Error ❌";
+document.getElementById("chatReply").innerText = "Server Error ❌";
 }
 }
 
