@@ -4,6 +4,8 @@ if (req.method !== "POST") {
 return res.status(405).json({ error: "Method not allowed" });
 }
 
+try {
+
 const { message } = req.body;
 
 const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -14,14 +16,26 @@ headers: {
 },
 body: JSON.stringify({
 model: "gpt-4o-mini",
-messages: [{ role: "user", content: message }]
+messages: [
+{ role: "system", content: "You are a helpful AI that writes shayari and songs." },
+{ role: "user", content: message }
+]
 })
 });
 
 const data = await response.json();
 
+// 🧠 SAFE CHECK
+if (!data.choices) {
+return res.status(500).json({ reply: "API Error ❌" });
+}
+
 res.status(200).json({
 reply: data.choices[0].message.content
 });
+
+} catch (err) {
+res.status(500).json({ reply: "Server Error ❌" });
+}
 
 }
