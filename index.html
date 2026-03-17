@@ -1,257 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <title>BAGE AI</title>
-<style
+<style>
 body{
-background:#0a0a0a;
+background:black;
 color:white;
 font-family:Arial;
 text-align:center;
-margin:0;
 }
-
-header{
-background:#111;
-padding:20px;
-font-size:35px;
-color:#00ffd5;
-box-shadow:0 0 10px #00ffd5;
-}
-
-button{
-padding:10px 20px;
-margin:10px;
-background:#00ffd5;
-border:none;
-border-radius:6px;
-cursor:pointer;
-font-weight:bold;
-}
-
-input{
+input, button{
 padding:10px;
-margin:5px;
-border-radius:6px;
-border:none;
-}
-
-header{
-font-size:40px;
-padding:20px;
-color:#00ffcc;
-}
-
-button{<div style="margin-top:30px;">
-<input id="userInput" placeholder="Type message..." style="padding:10px;width:200px;">
-<button onclick="aiChat()">Send</button>
-<p id="chatReply"></p>
-</div>
-padding:10px 20px;
 margin:10px;
-background:#00ffcc;
 border:none;
 border-radius:5px;
+}
+button{
+background:#00ffcc;
 cursor:pointer;
 }
-
-.container{
-margin-top:50px;
-}
-
 </style>
 </head>
 
 <body>
-<header>
-BAGE AI
-<br>
-<button onclick="setHindi()">Hindi</button>
-<button onclick="setEnglish()">English</button>
-</header>
-  <div style="margin-top:20px;">
-<input id="email" placeholder="Email" style="padding:10px;">
-<input id="password" placeholder="Password" type="password" style="padding:10px;">
+
+<h1>🤖 BAGE AI</h1>
+
+<!-- LOGIN -->
+<h3>Login</h3>
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
 <button onclick="login()">Login</button>
-    <button onclick="googleLogin()">Login with Google</button>
 <p id="loginStatus"></p>
-</div>
 
-<div class="container">
-
-<h2>Welcome to BAGE AI</h2>
-
-<p>AI Shayari | Song Generator | Image Generator | Video Generator</p>
-
-<button onclick="generateShayari()">Generate Shayari</button>
-<button onclick="generateSong()">Generate Song</button>
-<button>AI Chat</button>
-<button>Image Generator</button>
-<button>Video Generator</button>
+<!-- CHAT -->
+<h3>AI Chat</h3>
 <input type="text" id="userInput" placeholder="Type message...">
 <button onclick="aiChat()">Send</button>
+<p id="chatReply"></p>
 
-<p id="chatReply"></p>
-</div>
-<div style="margin-top:30px;">
-<input id="userInput" placeholder="Type message..." style="padding:10px;width:200px;">
-<button onclick="aiChat()">Send</button>
-<p id="chatReply"></p>
-</div>
-  <div style="margin-top:30px;">
-<input id="voiceText" placeholder="Type text for voice..." style="padding:10px;width:200px;">
+<!-- SHAYARI -->
+<h3>Shayari</h3>
+<button onclick="generateShayari()">Generate Shayari</button>
+
+<!-- SONG -->
+<h3>Song</h3>
+<button onclick="generateSong()">Generate Song</button>
+
+<!-- VOICE -->
+<h3>Text to Voice</h3>
+<input type="text" id="voiceText" placeholder="Enter text">
 <button onclick="speakText()">Speak</button>
-</div>
-  <div style="margin-top:30px;">
-<input id="videoPrompt" placeholder="Describe video..." style="padding:10px;width:200px;">
+
+<!-- VIDEO -->
+<h3>Video Generator</h3>
+<input type="text" id="videoPrompt" placeholder="Enter prompt">
 <button onclick="generateVideo()">Generate Video</button>
 <p id="videoResult"></p>
-</div>
-</body><script>function generateShayari()<script>
+
+<!-- PAYMENT -->
+<h3>Subscription</h3>
+<p>Free Plan</p>
+<p>Pro Plan - ₹299</p>
+<button onclick="upiPay()">Pay with UPI</button>
+<p id="paymentStatus"></p>
+
 <script>
 
-async function aiChat(){
-
-let input = document.getElementById("userInput").value;
-
-document.getElementById("chatReply").innerText = "Thinking... 🤖";
-
-const response = await fetch("https://bage-ai.vercel.app/api/chat", {
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({
-message: input
-})
-});
-
-const data = await response.json();
-
-document.getElementById("chatReply").innerText = data.reply;
-
-}
-
-</script>
-
-let input = document.getElementById("userInput").value;
-
-document.getElementById("chatReply").innerText = "Thinking... 🤖";
-
-const response = await fetch("https://api.openai.com/v1/chat/completions", {
-method: "POST",
-headers: {
-"Content-Type": "application/json",
-"Authorization": "Bearer YOUR_API_KEY"
-},
-body: JSON.stringify({
-model: "gpt-4o-mini",
-messages: [{role: "user", content: input}]
-})
-});
-
-const data = await response.json();
-
-document.getElementById("chatReply").innerText =
-data.choices[0].message.content;
-
-}
-
-</script> (){function speakText(){
-function generateVideo(){
-function login(){function googleLogin(){function setHindi(){
-document.body.style.fontFamily="Noto Sans Devanagari, Arial";
-alert("Website language set to Hindi");
-}
-
-function setEnglish(){
-document.body.style.fontFamily="Arial";
-alert("Website language set to English");
-}
-
-document.getElementById("loginStatus").innerText =
-"Google Login coming soon 🚀";
-
-  }
-
+// LOGIN
+function login(){
 let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
 
 if(email === "admin@bageai.com" && password === "1234"){
 document.getElementById("loginStatus").innerText = "Login Successful ✅";
 }else{
-document.getElementById("loginStatus").innerText = "Wrong Email or Password ❌";
+document.getElementById("loginStatus").innerText = "Wrong Email ❌";
+}
 }
 
-}
-let prompt = document.getElementById("videoPrompt").value;
+// AI CHAT
+async function aiChat(){
+let input = document.getElementById("userInput").value;
 
-document.getElementById("videoResult").innerText =
-"Generating AI video for: " + prompt + " (Runway ML connect soon)";
-
-}
-let text = document.getElementById("voiceText").value;
-
-let speech = new SpeechSynthesisUtterance(text);
-
-speech.lang = "hi-IN";
-
-speechSynthesis.speak(speech);
-
+if(!input){
+alert("Type something");
+return;
 }
 
-let input = document.getElementById("userInput").value.toLowerCase();
-let reply = "I am BAGE AI 🤖";
+document.getElementById("chatReply").innerText = "Thinking... 🤖";
 
-if(input.includes("hello")) reply = "Hello! How can I help you?";
-if(input.includes("shayari")) reply = "Click the Shayari button!";
-if(input.includes("song")) reply = "Song generator coming soon!";
-if(input.includes("bye")) reply = "Goodbye!";
+try{
+const response = await fetch("https://bage-ai.vercel.app/api/chat", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({ message: input })
+});
 
-document.getElementById("chatReply").innerText = reply;
+const data = await response.json();
+document.getElementById("chatReply").innerText = data.reply;
 
+}catch(e){
+document.getElementById("chatReply").innerText = "Error ❌";
+}
 }
 
-function generateShayari() {function generateSong(){function upiPay(){
-
-document.getElementById("paymentStatus").innerText =
-"UPI payment system coming soon 💳";
-
-  }
-
-let song = [
-"दिल की धड़कन में तेरा नाम है, हर सुबह में तेरा पैगाम है।",
-"तेरे बिना ये रात अधूरी है, तेरी याद ही मेरी मजबूरी है।",
-"चाँद भी तुझसे जलने लगा है, तेरी मुस्कान में जादू छुपा है।"
-];
-
-let random = Math.floor(Math.random()*song.length);
-
-alert(song[random]);
-
-}
-
+// SHAYARI
+function generateShayari(){
 let shayari = [
 "तेरी यादों का मौसम हर रोज़ आता है, दिल को चुपके से रुला जाता है।",
 "तू पास नहीं फिर भी एहसास तेरा है, जैसे हर सांस में नाम तेरा है।",
 "मोहब्बत अधूरी सही मगर सच्ची है, दिल में तेरी याद अब भी अच्छी है।"
 ];
-
 let random = Math.floor(Math.random()*shayari.length);
-
 alert(shayari[random]);
+}
 
-}<div style="margin-top:40px;">
-<h3>Subscription Plan</h3>
+// SONG
+function generateSong(){
+let song = [
+"दिल की धड़कन में तेरा नाम है, हर सुबह में तेरा पैगाम है।",
+"तेरे बिना ये रात अधूरी है, तेरी याद ही मेरी मजबूरी है।",
+"चाँद भी तुझसे जलने लगा है, तेरी मुस्कान में जादू छुपा है।"
+];
+let random = Math.floor(Math.random()*song.length);
+alert(song[random]);
+}
 
-<p>Free Plan</p>
-<p>Pro Plan - ₹299 / month</p>
+// VOICE
+function speakText(){
+let text = document.getElementById("voiceText").value;
+let speech = new SpeechSynthesisUtterance(text);
+speech.lang = "hi-IN";
+speechSynthesis.speak(speech);
+}
 
-<button onclick="upiPay()">Pay with UPI</button>
+// VIDEO
+function generateVideo(){
+let prompt = document.getElementById("videoPrompt").value;
+document.getElementById("videoResult").innerText =
+"Generating video for: " + prompt;
+}
 
-<p id="paymentStatus"></p>
-</div>
+// PAYMENT
+function upiPay(){
+document.getElementById("paymentStatus").innerText =
+"UPI system coming soon 💳";
+}
 
 </script>
-</html>  à
+
+</body>
+</html>
