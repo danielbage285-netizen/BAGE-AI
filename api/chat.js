@@ -39,3 +39,4 @@ return res.status(500).json({ reply: "Server Error ❌" });
 }
 
 }
+console.log("API KEY:", process.env.OPENAI_API_KEY);
