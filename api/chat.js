@@ -8,6 +8,8 @@ try {
 
 const { message } = req.body;
 
+console.log("API KEY:", process.env.OPENAI_API_KEY);
+
 const response = await fetch("https://api.openai.com/v1/chat/completions", {
 method: "POST",
 headers: {
@@ -24,10 +26,12 @@ messages: [
 
 const data = await response.json();
 
-console.log(data); // 🔍 debug
+console.log("FULL ERROR:", data);
 
 if (!data.choices) {
-return res.status(500).json({ reply: "API Failed ❌" });
+return res.status(500).json({
+reply: data.error?.message || "API Failed ❌"
+});
 }
 
 res.status(200).json({
@@ -39,4 +43,3 @@ return res.status(500).json({ reply: "Server Error ❌" });
 }
 
 }
-console.log("API KEY:", process.env.OPENAI_API_KEY);
