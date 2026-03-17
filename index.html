@@ -123,7 +123,12 @@ document.getElementById("chatReply").innerText = reply;
 
 }
 
-function generateShayari() {function generateSong(){
+function generateShayari() {function generateSong(){function upiPay(){
+
+document.getElementById("paymentStatus").innerText =
+"UPI payment system coming soon 💳";
+
+  }
 
 let song = [
 "दिल की धड़कन में तेरा नाम है, हर सुबह में तेरा पैगाम है।",
@@ -147,7 +152,16 @@ let random = Math.floor(Math.random()*shayari.length);
 
 alert(shayari[random]);
 
-}
+}<div style="margin-top:40px;">
+<h3>Subscription Plan</h3>
+
+<p>Free Plan</p>
+<p>Pro Plan - ₹299 / month</p>
+
+<button onclick="upiPay()">Pay with UPI</button>
+
+<p id="paymentStatus"></p>
+</div>
 
 </script>
 </html> 
